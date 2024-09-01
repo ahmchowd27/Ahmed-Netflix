@@ -67,3 +67,16 @@ export async function getMoviesByCategory(req, res) {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 }
+
+export async function getTopTrendingMovies(req, res) {
+  try {
+    const data = await fetchFromTMDB(
+      "https://api.themoviedb.org/3/trending/movie/day?language=en-US"
+    );
+    const topMovies = data.results.slice(0, 5); // Extract the top 5 movies
+    res.json({ success: true, movies: topMovies });
+  } catch (error) {
+    console.log("Error fetching top trending movies:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+}
