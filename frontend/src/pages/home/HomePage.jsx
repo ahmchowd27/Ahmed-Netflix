@@ -1,5 +1,5 @@
 import { useAuthStore } from "../../store/authUser";
-import AuthScreen from "./AuthScreenComponent"; // This should match the actual file name.
+import AuthScreen from "./AuthScreen"; // This should match the actual file name.
 
 import HomeScreen from "./HomeScreen";
 
