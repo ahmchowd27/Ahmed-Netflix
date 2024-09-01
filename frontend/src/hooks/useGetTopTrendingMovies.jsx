@@ -10,7 +10,6 @@ const useGetTopTrendingMovies = () => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get("/api/v1/movie/trending/top");
-        console.log("Fetched movies:", response.data.movies); // Debugging log
         setMovies(response.data.movies || []);
         setLoading(false);
       } catch (err) {

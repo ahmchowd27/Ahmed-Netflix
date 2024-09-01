@@ -52,7 +52,7 @@ export async function signup(req, res) {
       email,
       password: hashedPassword,
       username,
-      image,
+      image, // Assigning the hardcoded image here
     });
 
     generateTokenAndSetCookie(newUser._id, res);
@@ -70,6 +70,7 @@ export async function signup(req, res) {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
+
 export async function login(req, res) {
   try {
     const { email, password } = req.body;
@@ -116,6 +117,16 @@ export async function logout(req, res) {
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     console.log("Error in logout controller", error.message);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+}
+
+export async function authCheck(req, res) {
+  try {
+    console.log("req.user:", req.user);
+    res.status(200).json({ success: true, user: req.user });
+  } catch (error) {
+    console.log("Error in authCheck controller", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
